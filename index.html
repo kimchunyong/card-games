@@ -8,9 +8,11 @@
     <title>카드게임</title>
     <style>
         .card {
-            width: 100px;
-            height: 150px;
-            border: 1px solid #000;
+            display: inline-block;
+            width: 70px;
+            height: 100px;
+            margin: 0 20px 20px 0;
+            perspective: 140px;
         }
 
         .card-inner {
@@ -31,22 +33,22 @@
             position: absolute;
             width: 100%;
             height: 100%;
+            border: 1px solid #000;
             backface-visibility: hidden;
         }
 
+        .card-front {
+            background-color: #4ecec2;
+        }
+
         .card-back {
-            transform: rotateY(180deg)
+            background-color: #efefef;
+            transform: rotateY(180deg);
         }
     </style>
 </head>
 
 <body>
-    <div class="card">
-        <div class="card-inner">
-            <div class="card-front"></div>
-            <div class="card-back"></div>
-        </div>
-    </div>
     <script src="./card.js"></script>
 </body>
 
