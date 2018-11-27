@@ -1,3 +1,4 @@
+var clickFalg = true;
 
 function rndColorSet() {
     var colors = ['red', 'red', 'orange', 'orange', 'green', 'green', 'yellow', 'yellow', 'purple', 'purple', 'pink', 'pink'];
@@ -11,6 +12,7 @@ function rndColorSet() {
 }
 
 function cardCreate(row, col) {
+    clickFalg = false;
     for (var i = 0; i < col; i++) {
         var rowItem = document.createElement('div');
         rowItem.className = "row-item";
@@ -24,12 +26,6 @@ function cardCreate(row, col) {
             var cardBack = document.createElement('div');
             cardBack.className = "card-back";
 
-            (function (card) {
-                card.addEventListener('click', function () {
-                    card.classList.toggle('flipped');
-                })
-            })(card)
-
             cardInner.appendChild(cardFront);
             cardInner.appendChild(cardBack);
             card.appendChild(cardInner);
@@ -37,8 +33,36 @@ function cardCreate(row, col) {
             document.body.append(rowItem);
         }
     }
+    document.querySelectorAll('.card').forEach(function (card, index) {
+        setTimeout(function () {
+            card.classList.add('flipped');
+        }, 1000 + 100 * index)
+    })
+
+    document.querySelectorAll('.card').forEach(function (card, index) {
+        setTimeout(function () {
+            card.classList.remove('flipped');
+            clickFalg = true;
+        }, 5000)
+    })
+
 }
 cardCreate(4, 3);
+
+
+
+function cardClick() {
+    var card = document.querySelectorAll('.card');
+    card.forEach(card => {
+        card.addEventListener('click', function (e) {
+            if (clickFalg) {
+                card.classList.toggle('flipped');
+            }
+        })
+    })
+}
+cardClick();
+
 
 function cardBackColorSet() {
     var rndColor = rndColorSet();
