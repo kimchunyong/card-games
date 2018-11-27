@@ -57,28 +57,22 @@ function cardClick() {
     card.forEach(card => {
         card.addEventListener('click', function (e) {
             if (clickFalg) {
-                var targetParent = e.target.parentElement.parentElement;
                 card.classList.toggle('flipped');
-                clickCard.push(targetParent);
+                clickCard.push(card);
                 if (clickCard.length === 2) {
-                    //console.log(111)
-                    var cardFirst = clickCard[0]
-                    console.log(cardFirst)
-                    var cardSecond = clickCard[1].querySelector('card-back')
-                    if (cardFirst !== cardSecond) {
-                        console.log(222)
+                    var cardFirst = clickCard[0].querySelector('.card-back')
+                    var cardSecond = clickCard[1].querySelector('.card-back')
+                    if (cardFirst.style.backgroundColor == cardSecond.style.backgroundColor) {
                         clickCard = [];
                     } else {
-                        console.log(333)
                         clickFalg = false;
                         setTimeout(function () {
-                            cardFirst.classList.remove('flipped');
-                            cardSecond.classList.remove('flipped');
+                            clickCard[0].classList.remove('flipped');
+                            clickCard[1].classList.remove('flipped');
                             clickFalg = true;
                             clickCard = [];
                         }, 1000)
                     }
-
                 }
             }
         })
