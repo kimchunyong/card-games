@@ -1,5 +1,3 @@
-var row = 4;
-var col = 3;
 
 function rndColorSet() {
     var colors = ['red', 'red', 'orange', 'orange', 'green', 'green', 'yellow', 'yellow', 'purple', 'purple', 'pink', 'pink'];
@@ -11,10 +9,6 @@ function rndColorSet() {
 
     return rndColor;
 }
-
-
-
-
 
 function cardCreate(row, col) {
     for (var i = 0; i < col; i++) {
@@ -44,7 +38,7 @@ function cardCreate(row, col) {
         }
     }
 }
-cardCreate(row, col);
+cardCreate(4, 3);
 
 function cardBackColorSet() {
     var rndColor = rndColorSet();
