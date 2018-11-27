@@ -15,12 +15,12 @@ function cardCreate(row, col) {
             var cardBack = document.createElement('div');
             cardBack.className = "card-back";
 
-
             (function (card) {
                 card.addEventListener('click', function () {
                     card.classList.toggle('flipped');
                 })
             })(card)
+
             cardInner.appendChild(cardFront);
             cardInner.appendChild(cardBack);
             card.appendChild(cardInner);
