@@ -1,10 +1,25 @@
 var row = 4;
 var col = 3;
 
+function rndColorSet() {
+    var colors = ['red', 'red', 'orange', 'orange', 'green', 'green', 'yellow', 'yellow', 'purple', 'purple', 'pink', 'pink'];
+
+    var rndColor = [];
+    for (var j = 0; colors.length > 0; j++) {
+        rndColor = rndColor.concat(colors.splice(Math.floor(Math.random() * colors.length), 1))
+    }
+
+    return rndColor;
+}
+
+
+
+
+
 function cardCreate(row, col) {
     for (var i = 0; i < col; i++) {
         var rowItem = document.createElement('div');
-        rowItem.className = "row-item"
+        rowItem.className = "row-item";
         for (var j = 0; j < row; j++) {
             var card = document.createElement('div');
             card.className = "card";
@@ -30,3 +45,12 @@ function cardCreate(row, col) {
     }
 }
 cardCreate(row, col);
+
+function cardBackColorSet() {
+    var rndColor = rndColorSet();
+    var cardBack = document.querySelectorAll('.card-back');
+    cardBack.forEach((cardBack, idx) => {
+        cardBack.style.backgroundColor = rndColor[idx];
+    });
+}
+cardBackColorSet();
