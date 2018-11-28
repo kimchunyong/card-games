@@ -1,10 +1,10 @@
 var clickFalg = true;
 var clickCard = [];
 var sucessCard = [];
+var startTime;
 
 function rndColorSet() {
     var colors = ['red', 'red', 'orange', 'orange', 'green', 'green', 'yellow', 'yellow', 'purple', 'purple', 'pink', 'pink'];
-
     var rndColor = [];
     for (var j = 0; colors.length > 0; j++) {
         rndColor = rndColor.concat(colors.splice(Math.floor(Math.random() * colors.length), 1))
@@ -32,7 +32,7 @@ function cardCreate(row, col) {
             cardInner.appendChild(cardBack);
             card.appendChild(cardInner);
             rowItem.appendChild(card);
-            document.body.append(rowItem);
+            document.querySelector('#wrapper').append(rowItem);
         }
     }
     document.querySelectorAll('.card').forEach(function (card, index) {
@@ -45,6 +45,7 @@ function cardCreate(row, col) {
         setTimeout(function () {
             card.classList.remove('flipped');
             clickFalg = true;
+            startTime = new Date();
         }, 5000)
     })
 
@@ -68,6 +69,11 @@ function cardClick() {
                         sucessCard.push(clickCard[0]);
                         sucessCard.push(clickCard[1]);
                         clickCard = [];
+                        if (sucessCard.length === 12) {
+                            var endTime = new Date();
+                            alert("축하합니다 성공!!" + Math.floor((startTime - endTime) / 1000) + "초 걸렸습니다.");
+                            reload();
+                        }
                     } else {
                         clickFalg = false;
                         setTimeout(function () {
@@ -83,6 +89,14 @@ function cardClick() {
     })
 }
 cardClick();
+
+function reload() {
+    document.querySelector('#wrapper').innerHTML = '';
+    cardCreate(4, 3);
+    cardBackColorSet();
+    cardClick();
+    sucessCard = [];
+}
 
 
 function cardBackColorSet() {
