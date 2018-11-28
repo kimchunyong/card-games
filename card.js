@@ -1,5 +1,6 @@
 var clickFalg = true;
 var clickCard = [];
+var sucessCard = [];
 
 function rndColorSet() {
     var colors = ['red', 'red', 'orange', 'orange', 'green', 'green', 'yellow', 'yellow', 'purple', 'purple', 'pink', 'pink'];
@@ -56,13 +57,16 @@ function cardClick() {
     var card = document.querySelectorAll('.card');
     card.forEach(card => {
         card.addEventListener('click', function (e) {
-            if (clickFalg) {
+            if (clickFalg && !sucessCard.includes(card)) {
                 card.classList.toggle('flipped');
                 clickCard.push(card);
                 if (clickCard.length === 2) {
                     var cardFirst = clickCard[0].querySelector('.card-back')
                     var cardSecond = clickCard[1].querySelector('.card-back')
                     if (cardFirst.style.backgroundColor == cardSecond.style.backgroundColor) {
+                        console.log(clickCard[0])
+                        sucessCard.push(clickCard[0]);
+                        sucessCard.push(clickCard[1]);
                         clickCard = [];
                     } else {
                         clickFalg = false;
